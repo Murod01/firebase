@@ -78,10 +78,16 @@ data = {'name': "John Smith", 'age': 40, 'employed': True, 'address': "Nyu York"
 #update
 # db.child("people").child("person").child("myid").update({'name': "Jane"})
 # db.child("people").child("person").child("myid").update({'names': "Jane"})
+# persons = db.child("people").child("person").get()
+# for person in persons.each():
+#     # print(person.key())
+#     # print(person.val())
+#     if person.val()['name'] == 'John Smith':
+#         db.child("people").child("person").child(person.key()).update({'name': "Jane"})
+
+#delete
+db.child("people").child("person").child("myid").remove()
 persons = db.child("people").child("person").get()
 for person in persons.each():
-    # print(person.key())
-    # print(person.val())
     if person.val()['name'] == 'John Smith':
-        db.child("people").child("person").child(person.key()).update({'name': "Jane"})
-
+        db.child("people").child("person").child(person.key()).child("age").remove()
